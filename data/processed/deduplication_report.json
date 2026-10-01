@@ -1,0 +1,8 @@
+{
+  "input_file": "data/raw/arxiv_sample.jsonl",
+  "output_file": "data/processed/arxiv_deduplicated.jsonl",
+  "rule": "Deduplicate by arXiv ID; keep highest version; keep first on ties.",
+  "input_records": 1500,
+  "duplicates_removed": 0,
+  "output_records": 1500
+}
