@@ -1,0 +1,753 @@
+{
+  "source_file": "data/processed/arxiv_deduplicated.jsonl",
+  "source_sha256": "1942e99a1c96945db90f7cecc70ed21918b7e6bb982a13908e0076733cc1aa3c",
+  "source_records": 1500,
+  "models": {
+    "gemini": {
+      "records": 1500,
+      "labels": {
+        "keep": 1482,
+        "exclude": 15,
+        "review": 3
+      },
+      "missing_ids": []
+    },
+    "sol": {
+      "records": 1500,
+      "labels": {
+        "keep": 1471,
+        "review": 23,
+        "exclude": 6
+      },
+      "missing_ids": []
+    }
+  },
+  "format_repairs": [
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_01_raw.txt",
+      "line": 21,
+      "arxiv_id": "2609.39094",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_01_raw.txt",
+      "line": 42,
+      "arxiv_id": "2609.37835",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_01_raw.txt",
+      "line": 92,
+      "arxiv_id": "2609.36125",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_02_raw.txt",
+      "line": 26,
+      "arxiv_id": "2609.33617",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_02_raw.txt",
+      "line": 35,
+      "arxiv_id": "2609.33026",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_02_raw.txt",
+      "line": 37,
+      "arxiv_id": "2609.32909",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_02_raw.txt",
+      "line": 87,
+      "arxiv_id": "2609.30788",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_02_raw.txt",
+      "line": 100,
+      "arxiv_id": "2609.30260",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_03_raw.txt",
+      "line": 5,
+      "arxiv_id": "2609.30128",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_03_raw.txt",
+      "line": 9,
+      "arxiv_id": "2609.29989",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_03_raw.txt",
+      "line": 60,
+      "arxiv_id": "2609.27616",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_04_raw.txt",
+      "line": 13,
+      "arxiv_id": "2609.24856",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_04_raw.txt",
+      "line": 41,
+      "arxiv_id": "2609.23447",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_04_raw.txt",
+      "line": 49,
+      "arxiv_id": "2609.22937",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_04_raw.txt",
+      "line": 50,
+      "arxiv_id": "2609.22845",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_04_raw.txt",
+      "line": 62,
+      "arxiv_id": "2609.22509",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_04_raw.txt",
+      "line": 64,
+      "arxiv_id": "2609.22467",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_05_raw.txt",
+      "line": 5,
+      "arxiv_id": "2609.20526",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_05_raw.txt",
+      "line": 12,
+      "arxiv_id": "2609.20379",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_05_raw.txt",
+      "line": 17,
+      "arxiv_id": "2609.20093",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_05_raw.txt",
+      "line": 28,
+      "arxiv_id": "2609.19572",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_05_raw.txt",
+      "line": 43,
+      "arxiv_id": "2609.18826",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_05_raw.txt",
+      "line": 55,
+      "arxiv_id": "2609.18449",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_05_raw.txt",
+      "line": 81,
+      "arxiv_id": "2609.17270",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_05_raw.txt",
+      "line": 91,
+      "arxiv_id": "2609.16780",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_06_raw.txt",
+      "line": 52,
+      "arxiv_id": "2609.14588",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_06_raw.txt",
+      "line": 67,
+      "arxiv_id": "2609.13978",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_06_raw.txt",
+      "line": 70,
+      "arxiv_id": "2609.13910",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_06_raw.txt",
+      "line": 81,
+      "arxiv_id": "2609.13484",
+      "repair": "escaped_internal_quotes_and_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_06_raw.txt",
+      "line": 91,
+      "arxiv_id": "2609.13112",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_06_raw.txt",
+      "line": 98,
+      "arxiv_id": "2609.12931",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_07_raw.txt",
+      "line": 33,
+      "arxiv_id": "2609.11640",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_07_raw.txt",
+      "line": 90,
+      "arxiv_id": "2609.09309",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_08_raw.txt",
+      "line": 12,
+      "arxiv_id": "2609.08693",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_08_raw.txt",
+      "line": 13,
+      "arxiv_id": "2609.08674",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_08_raw.txt",
+      "line": 18,
+      "arxiv_id": "2609.08516",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_08_raw.txt",
+      "line": 20,
+      "arxiv_id": "2609.08478",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_08_raw.txt",
+      "line": 38,
+      "arxiv_id": "2609.08100",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_08_raw.txt",
+      "line": 41,
+      "arxiv_id": "2609.08022",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_08_raw.txt",
+      "line": 47,
+      "arxiv_id": "2609.07655",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_08_raw.txt",
+      "line": 48,
+      "arxiv_id": "2609.07653",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_08_raw.txt",
+      "line": 77,
+      "arxiv_id": "2609.06738",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_09_raw.txt",
+      "line": 4,
+      "arxiv_id": "2609.05724",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_09_raw.txt",
+      "line": 7,
+      "arxiv_id": "2609.05696",
+      "repair": "escaped_internal_quotes_and_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_09_raw.txt",
+      "line": 63,
+      "arxiv_id": "2609.03576",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_09_raw.txt",
+      "line": 71,
+      "arxiv_id": "2609.03307",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_10_raw.txt",
+      "line": 25,
+      "arxiv_id": "2609.01533",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_10_raw.txt",
+      "line": 31,
+      "arxiv_id": "2609.01378",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_10_raw.txt",
+      "line": 32,
+      "arxiv_id": "2609.01302",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_10_raw.txt",
+      "line": 61,
+      "arxiv_id": "2609.00542",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_11_raw.txt",
+      "line": 12,
+      "arxiv_id": "2608.29778",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_11_raw.txt",
+      "line": 54,
+      "arxiv_id": "2608.28231",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_11_raw.txt",
+      "line": 76,
+      "arxiv_id": "2608.27383",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_11_raw.txt",
+      "line": 77,
+      "arxiv_id": "2608.27361",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_11_raw.txt",
+      "line": 87,
+      "arxiv_id": "2608.27195",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_11_raw.txt",
+      "line": 93,
+      "arxiv_id": "2608.27060",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_12_raw.txt",
+      "line": 5,
+      "arxiv_id": "2608.26909",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_12_raw.txt",
+      "line": 10,
+      "arxiv_id": "2608.26864",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_12_raw.txt",
+      "line": 65,
+      "arxiv_id": "2608.24693",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_13_raw.txt",
+      "line": 11,
+      "arxiv_id": "2608.23130",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_13_raw.txt",
+      "line": 56,
+      "arxiv_id": "2608.21295",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_13_raw.txt",
+      "line": 87,
+      "arxiv_id": "2608.20491",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_13_raw.txt",
+      "line": 99,
+      "arxiv_id": "2608.19933",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_14_raw.txt",
+      "line": 4,
+      "arxiv_id": "2608.19725",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_14_raw.txt",
+      "line": 30,
+      "arxiv_id": "2608.18720",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_14_raw.txt",
+      "line": 63,
+      "arxiv_id": "2608.17720",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_14_raw.txt",
+      "line": 70,
+      "arxiv_id": "2608.17461",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_14_raw.txt",
+      "line": 73,
+      "arxiv_id": "2608.17303",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_15_raw.txt",
+      "line": 41,
+      "arxiv_id": "2608.14853",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_15_raw.txt",
+      "line": 55,
+      "arxiv_id": "2608.14079",
+      "repair": "escaped_internal_quotes_and_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_15_raw.txt",
+      "line": 76,
+      "arxiv_id": "2608.12968",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_15_raw.txt",
+      "line": 81,
+      "arxiv_id": "2608.12787",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_15_raw.txt",
+      "line": 94,
+      "arxiv_id": "2608.12152",
+      "repair": "escaped_invalid_backslashes"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_15_raw.txt",
+      "line": 98,
+      "arxiv_id": "2608.23587",
+      "repair": "escaped_invalid_backslashes"
+    }
+  ],
+  "format_repaired_records": 74,
+  "evidence_issue_counts": {
+    "gemini": {
+      "evidence_not_exact_substring": 191
+    },
+    "sol": {}
+  },
+  "paired_label_agreements": 1471,
+  "paired_label_disagreements": 29,
+  "batches": [
+    {
+      "model": "gemini",
+      "batch": 1,
+      "records": 100,
+      "missing_ids": []
+    },
+    {
+      "model": "gemini",
+      "batch": 2,
+      "records": 100,
+      "missing_ids": []
+    },
+    {
+      "model": "gemini",
+      "batch": 3,
+      "records": 100,
+      "missing_ids": []
+    },
+    {
+      "model": "gemini",
+      "batch": 4,
+      "records": 100,
+      "missing_ids": []
+    },
+    {
+      "model": "gemini",
+      "batch": 5,
+      "records": 100,
+      "missing_ids": []
+    },
+    {
+      "model": "gemini",
+      "batch": 6,
+      "records": 100,
+      "missing_ids": []
+    },
+    {
+      "model": "gemini",
+      "batch": 7,
+      "records": 100,
+      "missing_ids": []
+    },
+    {
+      "model": "gemini",
+      "batch": 8,
+      "records": 100,
+      "missing_ids": []
+    },
+    {
+      "model": "gemini",
+      "batch": 9,
+      "records": 99,
+      "missing_ids": [
+        "2609.03717"
+      ]
+    },
+    {
+      "model": "gemini",
+      "batch": 10,
+      "records": 100,
+      "missing_ids": []
+    },
+    {
+      "model": "gemini",
+      "batch": 11,
+      "records": 100,
+      "missing_ids": []
+    },
+    {
+      "model": "gemini",
+      "batch": 12,
+      "records": 100,
+      "missing_ids": []
+    },
+    {
+      "model": "gemini",
+      "batch": 13,
+      "records": 100,
+      "missing_ids": []
+    },
+    {
+      "model": "gemini",
+      "batch": 14,
+      "records": 100,
+      "missing_ids": []
+    },
+    {
+      "model": "gemini",
+      "batch": 15,
+      "records": 100,
+      "missing_ids": []
+    },
+    {
+      "model": "gemini",
+      "batch": null,
+      "records": 1,
+      "missing_ids": []
+    },
+    {
+      "model": "sol",
+      "batch": null,
+      "records": 1500,
+      "missing_ids": []
+    }
+  ],
+  "input_files": [
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_01_raw.txt",
+      "sha256": "ecc927304d53223bfc9cd2c7afbac27634d17d40d61f24f92f0bc92bf3c10733"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_02_raw.txt",
+      "sha256": "0584944602c5ce1932f84a94b16fd76f234d6aa4ac98346d7ae9f847e2ceb550"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_03_raw.txt",
+      "sha256": "94a5ef3df21e71b56f2d75f3dc5707e4e81a0343a90810a79c8000690d42666f"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_04_raw.txt",
+      "sha256": "799be48485ebd1e4517cd18e41c34288352154488365ad502d76ecf80f9e961f"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_05_raw.txt",
+      "sha256": "10d7672a48bf6b83f43794f0e0ad3fe20920d4b614f954127b350765a48ba09a"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_06_raw.txt",
+      "sha256": "a754f4f8b25f3f47f7ebe935104b9a9b3bacdbe8df825da0c49f9b72d8806178"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_07_raw.txt",
+      "sha256": "d625da1e05ce3e57d8e304d6d96317f736acbfe4ab553425844d3dda35fc03c5"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_08_raw.txt",
+      "sha256": "289d87920c9d341b52b775911f4d2faa80edf5d86acfd1cf40f57eef77295662"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_09_raw.txt",
+      "sha256": "312f112c653a573053d74be482da72d9867131440ebf590547f52cded1c738d4"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_10_raw.txt",
+      "sha256": "16d7449b5668c07cb440485b50ac5f6f94bd9ffed9579550ee640286a1e209e1"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_11_raw.txt",
+      "sha256": "8eb1182f9ada3355f9491188ee65fccced03459d26da4a564697150dd97bd24f"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_12_raw.txt",
+      "sha256": "f7bec512e9ab753a41d5d3cb0643f9d4a0417a3ba43f920fd5eefa4a59cdc57f"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_13_raw.txt",
+      "sha256": "01510acebe8dc2b83c1eaa37b41ad7013726e625d16e9ab82c8b297c89cd9ca8"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_14_raw.txt",
+      "sha256": "69b97bc0151228ec2b2984c0cff20430a7e9171489465344594882ff324a8237"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/batch_15_raw.txt",
+      "sha256": "b1dc5857b937cefb7b53325410b0f37fe5f48c5009163f4f00c210242d25894e"
+    },
+    {
+      "model": "gemini",
+      "file": "data/screening_results/gemini_supplement_raw.jsonl",
+      "sha256": "673646ccfad846e839e0bbeaeb20c75729a1709f7823e08431ee906c13904fe4"
+    },
+    {
+      "model": "sol",
+      "file": "data/sol_screening_result.jsonl",
+      "sha256": "551a4eeb2a2846c1d8bf7225bd1261da6abfa841b8322b60da541842006dffe7"
+    }
+  ],
+  "notes": [
+    "Only JSON syntax was repaired. Evidence text and labels were not corrected.",
+    "Missing outputs remain null in the combined file.",
+    "Agreement is not classification accuracy.",
+    "data/paper_classifications.jsonl equals data/sol_screening_result.jsonl; only one was used."
+  ]
+}

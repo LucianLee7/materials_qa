@@ -1,0 +1,22 @@
+{
+  "input_file": "data/processed/arxiv_deduplicated.jsonl",
+  "input_sha256": "1942e99a1c96945db90f7cecc70ed21918b7e6bb982a13908e0076733cc1aa3c",
+  "input_records": 1500,
+  "random_seed": 66,
+  "sample_size": 10,
+  "sampling_method": "random.Random(seed).sample; without replacement",
+  "prompt_file": "prompts/materials_relevance.txt",
+  "prompt_sha256": "e9759655e2ff3ef27b692e6be7b9bc53afe25ddc9ad8954b9a0da3629112e451",
+  "sampled_arxiv_ids": [
+    "2609.32319",
+    "2609.11459",
+    "2609.02629",
+    "2609.16466",
+    "2609.02008",
+    "2609.12738",
+    "2609.15429",
+    "2608.25482",
+    "2609.30491",
+    "2608.29712"
+  ]
+}

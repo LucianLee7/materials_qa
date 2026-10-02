@@ -31,6 +31,12 @@ Rules:
 6. Preserve the supplied arXiv ID exactly.
 7. Return one JSON object per paper, one object per line.
    Do not include Markdown fences or additional commentary.
+8. If file export is available, provide the classifications as a downloadable
+   UTF-8 JSONL file named paper_classifications.jsonl.
+   Otherwise, return the JSONL content directly.
+   Put each complete JSON object on its own line, with no headings or bullets.
+   Preserve the exact evidence text and chemical formulas when exporting;
+   do not render or rewrite LaTeX notation. Use valid JSON escaping where needed.
 
 Each object must contain:
 {"arxiv_id": "...", "decision": "keep|exclude|review", "reason": "...", "evidence": "..."}
