@@ -1,5 +1,4 @@
 import json
-import random
 from pathlib import Path
 
 input_path = Path("data/processed/arxiv_deduplicated.jsonl")
@@ -21,14 +20,3 @@ for paper in papers:
 
 print("Total records:", len(papers))
 print("Missing or blank abstracts:", missing_abstract_count)
-
-# 固定随机种子，使相同输入下的抽样结果可复现
-rng = random.Random(66)
-sample = rng.sample(papers, k=10)
-
-
-for index, paper in enumerate(sample, start=1):
-    print(f"\n--- Paper {index} ---")
-    print("arXiv ID:", paper["arxiv_id"])
-    print("Title:", paper["title"])
-    print("Abstract:", paper["abstract"])
