@@ -1,0 +1,19 @@
+{
+  "checked_on": "2026-10-03",
+  "pairs": 300,
+  "answerability": {
+    "answerable": 240,
+    "not_stated": 60
+  },
+  "categories": {
+    "synthesis_condition": 81,
+    "performance_metric": 90,
+    "material_property": 129
+  },
+  "unique_abstracts": 257,
+  "maximum_pairs_per_abstract": 2,
+  "mechanical_issues": [],
+  "checked": "JSON parsing, required fields, unique QA IDs and question strings, source ID membership, exact supporting passages, abstention fields, category values, original formula substring membership.",
+  "limitations": "No human semantic audit performed. Exact evidence matching does not establish full answer support or correct not-stated labels. Formula normalization and ambiguity annotation not semantically checked.",
+  "qa_sha256": "ce3ae53f0d3aedad2fd4a2ea606a30350556ebf31f23c2c5cbcdabeac929c710"
+}

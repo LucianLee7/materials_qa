@@ -1,0 +1,20 @@
+{
+  "pairs": 300,
+  "answerability": {
+    "answerable": 240,
+    "not_stated": 60
+  },
+  "categories": {
+    "synthesis_condition": 81,
+    "performance_metric": 90,
+    "material_property": 129
+  },
+  "unique_abstracts": 257,
+  "maximum_pairs_per_abstract": 2,
+  "maximum_not_stated_per_abstract": 1,
+  "shortfall": 0,
+  "validation": "Schema, ID membership, contiguous evidence exactness, formula substring membership, counts, and question uniqueness passed programmatic checks. Questions and answers were checked against supplied abstract excerpts. Human review has not been performed.",
+  "source_file": "data/processed/arxiv_materials_filtered.jsonl",
+  "batch_id": "all",
+  "normalization_policy": "Optional chemical formula normalization was omitted. Variable compositions and nonstandard notation remain unresolved."
+}

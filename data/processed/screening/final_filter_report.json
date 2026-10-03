@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-03",
+  "input_records": 1500,
+  "retained_records": 1479,
+  "excluded_records": 21,
+  "unresolved_records": 0,
+  "decision_rule": "Human decisions override model labels; otherwise retain only joint keep records.",
+  "human_reviewed_records": 65,
+  "human_keep": 44,
+  "human_exclude": 21,
+  "unreviewed_joint_keep_retained": 1435,
+  "abstract_text_modified": false,
+  "files": {
+    "filtered_corpus": "data/processed/arxiv_materials_filtered.jsonl",
+    "complete_decision_list": "data/processed/screening/final_relevance_decisions.jsonl"
+  },
+  "input_sha256": {
+    "data/processed/arxiv_deduplicated.jsonl": "1942e99a1c96945db90f7cecc70ed21918b7e6bb982a13908e0076733cc1aa3c",
+    "data/processed/screening/classifications_combined.jsonl": "a98bf0f5f4df236e2ef08d29eebc60d97a46af75f6e7953a235d4ac7f5c3aaa0",
+    "data/processed/screening/human_relevance_review.jsonl": "765fa2c5256daf48890d9e1fcb622c33b1ba15858930f380291c6164394da2fd"
+  },
+  "provenance_note": "Historical input hashes are retained. The redundant combined input was subsequently deleted; its record content is reconstructable by joining gemini_classifications.jsonl and sol_classifications.jsonl by arxiv_id in source order."
+}
