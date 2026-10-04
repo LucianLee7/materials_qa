@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-03",
+  "corrected_file": "data/processed/qa/materials_qa_corrected.jsonl",
+  "corrected_sha256": "fc402867070c7abefd9c90432f805efd232bb574687e576b3888d3af993c0d6b",
+  "original_sha256": "ce3ae53f0d3aedad2fd4a2ea606a30350556ebf31f23c2c5cbcdabeac929c710",
+  "pairs": 300,
+  "pairs_corrected": 10,
+  "metadata_entries_removed": 11,
+  "pairs_removed": 0,
+  "retained_w_element_qa_ids": [
+    "all_140",
+    "all_207",
+    "all_215",
+    "all_216",
+    "all_226"
+  ],
+  "review_scope": "Targeted contextual review of standalone W, As and B--H formula entries; not a complete semantic audit of all formula annotations.",
+  "checks": "Unique QA IDs, source membership, answerability field rules, exact supporting passages, formula source membership; all non-formula fields unchanged."
+}

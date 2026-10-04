@@ -6,7 +6,7 @@ Abstract collection, deduplication, materials-relevance screening, human relevan
 
 The final filtered corpus contains **1,479 abstracts**, with **21 abstracts excluded** from the original 1,500-record corpus.
 
-A set of **300 candidate QA pairs** has been generated and mechanically validated. Semantic QA review, chemical-formula review, the planned random 50-pair human QA audit, any resulting QA corrections or filtering, and contextual open-source model evaluation remain pending.
+A set of **300 candidate QA pairs** has been generated and mechanically validated. The random 50-pair human QA audit is complete: three pairs contain E6 errors (6% observed pair error rate). Corrections, further semantic and chemical-formula checks beyond the sample, and contextual open-source model evaluation remain pending.
 
 This data card describes the abstract corpus, relevance-screening process, and current QA candidate set. It does not represent a fully audited final QA dataset.
 
@@ -342,47 +342,55 @@ Each finding should include a brief explanation and the relevant source text.
 
 ---
 
-## Planned 50-Pair Human QA Audit
+## Completed 50-Pair Human QA Audit
 
-Before the human QA audit, the candidate version should be frozen and its file hash recorded.
+On 3 October 2026, 50 pairs were sampled uniformly without replacement from the 300 original candidates using `random.Random(66).sample`. The candidate hash and ordered selected IDs were recorded before review in `qa_audit_manifest.json`; the sample can be reconstructed from the retained original candidates using these IDs. The sample contains 43 answerable and seven not-stated pairs. The original candidates remained unchanged throughout the audit.
 
-A sample of **50 QA pairs** should then be selected:
+All final audit judgments for the 50 sampled pairs were made manually by the human reviewer using categories E1–E7. No AI judge or automated scoring system assigned the audit labels, error categories or final decisions. AI assistance was used to organize the review materials, present source excerpts, and draw attention to some fields for inspection. Complete abstracts and all fields were available in the review materials during the audit; the separate display file was subsequently removed, and these records remain available from the original QA file and source corpus. The review therefore used human judgment with presentation assistance and was not a fully unaided or blinded audit.
 
-- uniformly at random;
-- without replacement;
-- using a recorded random seed.
+| Category | Pairs with this error |
+| --- | ---: |
+| E1 | 0 |
+| E2 | 0 |
+| E3 | 0 |
+| E4 | 0 |
+| E5 | 0 |
+| E6 | 3 |
+| E7 | 0 |
 
-The selected QA IDs should be saved.
+**Three of 50 pairs had at least one error (6.0%); 47 had no errors detected by the reviewer.**
 
-The audit must be performed on the **original frozen candidates before any repairs are made**.
+- Sample 25 (`all_070`): unit W was incorrectly recorded as a chemical formula.
+- Sample 33 (`all_104`): unit W was incorrectly recorded as a chemical formula.
+- Sample 40 (`all_159`): the English word As was incorrectly recorded as a chemical formula.
 
-If errors are later corrected, the repairs should be reported separately rather than replacing the original audit findings or original error rate.
+The two-sided 95% Wilson interval is **2.06%–16.22%**, a binomial approximation to sampling without replacement, without a finite-population correction. The sample gives limited precision for the full candidate-set error rate. This interval concerns sampling uncertainty and does not account for reviewer mistakes or attention influenced by model assistance. Zero findings in other categories do not establish zero errors there, and rare error types may be missed. The audit assesses agreement with supplied abstracts, not the scientific truth of the papers.
 
-The audit should report:
+Not-stated questions showed template concentration around duration-related missing information: six of the seven not-stated questions in the audited sample ask about an unreported growth or deposition duration; the remaining question asks about numerical uncertainty. This limits coverage of different missing-information types and may make abstention evaluation less diverse. This is a dataset-level limitation, not an additional pair-level error assigned by the reviewer.
 
-- number of QA pairs reviewed;
-- number of findings in each E1–E7 category;
-- number of pairs containing at least one error;
-- observed pair error rate; and
-- a 95% confidence interval for the binary any-error rate.
+The original candidates remain unchanged. Post-audit corrections are recorded separately below and do not replace these original findings or the original error rate.
 
-If a Wilson interval is used, it should be identified as a binomial approximation to sampling without replacement.
+---
 
-A documented finite-population interval may be used instead.
+## Post-Audit QA Corrections
 
-Zero observed errors must not be interpreted as proof that the full dataset contains zero errors.
+A separate corrected candidate file is stored in `data/processed/qa/materials_qa_corrected.jsonl`. It currently contains all 300 pairs, with 11 non-chemical entries removed from `chemical_formulas` across ten pairs after user confirmation. These include unit W, the English word As, and the magnetic B--H relationship. Questions, answers, evidence passages and original candidate records were not changed. No QA pairs were removed (300 input, 0 removed, 300 remaining).
 
-The audit report should also discuss:
+The corrections are recorded in `data/processed/qa/qa_corrections.jsonl`. Three corrected pairs were identified in the original random audit; seven were confirmed in a targeted post-audit review. The original audit remains three errors in 50 pairs (6%). Post-audit findings do not retrospectively replace the original audit decisions. The targeted review of standalone W, As and B--H entries is complete; five W entries denoting tungsten were explicitly retained. This does not constitute a full semantic review of every formula annotation. Mechanical checks of the corrected file are recorded in `data/processed/qa/qa_corrected_checks.json`.
 
-- the relatively small sample size;
-- the possibility of missing rare error types;
-- reviewer judgement;
-- any use of model-generated translations; and
-- any model assistance used during review.
+---
 
-The audit measures agreement between the QA pair and the supplied abstract.
+## Reproducing Random Samples
 
-It does **not** verify the scientific truth of the paper itself.
+`random_sample.py` uses a fixed seed of 66 and samples without replacement in input file order. It writes a JSONL sample and a `.manifest.json` containing input hashes, sample IDs and sampling settings. The following commands reproduce the historical 10-paper pilot, 30-paper jointly kept sample, and 50-pair QA audit IDs in their original selected order. Existing outputs are not overwritten.
+
+```bash
+python3 random_sample.py data/processed/arxiv_deduplicated.jsonl /tmp/pilot_10.jsonl --count 10
+python3 random_sample.py data/processed/arxiv_deduplicated.jsonl /tmp/agreed_keep_30.jsonl --count 30 --agreed-keep
+python3 random_sample.py data/processed/qa/materials_qa_all.jsonl /tmp/qa_audit_50.jsonl --count 50
+```
+
+For the agreed-keep sample, the script joins the retained Gemini and Sol classification files by arXiv ID, filters to the 1,465 joint keep records, and preserves corpus order before sampling. The source is the original 1,500-record deduplicated corpus, not the final filtered corpus. The QA audit uses the original candidate file, not the corrected copy. Reproduction was verified against all three retained sample manifests.
 
 ---
 
@@ -417,8 +425,26 @@ The principal retained files are:
 - `data/processed/qa/materials_qa_all.jsonl`  
   The 300 generated QA candidates.
 
+- `data/processed/qa/materials_qa_corrected.jsonl`  
+  Corrected 300-pair candidate set for subsequent evaluation.
+
+- `data/processed/qa/qa_corrections.jsonl`  
+  Post-audit correction records.
+
+- `data/processed/qa/qa_corrected_checks.json`  
+  Mechanical checks and hash of the corrected candidates.
+
 - `data/processed/qa/qa_ingestion_checks.json`  
   Mechanical QA validation results and limitations.
+
+- `data/processed/qa/qa_audit_manifest.json`  
+  Frozen candidate hash, sampling seed and selected IDs.
+
+- `data/processed/qa/qa_human_audit.jsonl`  
+  Individual human audit decisions and error categories.
+
+- `data/processed/qa/qa_audit_summary.json`  
+  Audit counts, confidence interval and limitations.
 
 The original arXiv corpus, screening prompt, processed classification outputs, human decisions, final filtered corpus, and QA candidates are retained.
 
@@ -438,7 +464,7 @@ Third, the 30-record agreed-keep spot-check is too small to establish a precise 
 
 Fourth, mechanical QA validation verifies structure and source consistency but does not establish semantic correctness.
 
-Fifth, the planned 50-pair QA audit is a sample-based quality assessment and may fail to detect rare error types.
+Fifth, all audit decisions were made by a single human reviewer, with AI assistance in presenting materials. The sample-based audit may miss rare errors or errors overlooked by the reviewer.
 
 Finally, the dataset is grounded in the supplied arXiv abstracts. Neither the relevance review nor the QA audit verifies the scientific truth of claims made in the original papers.
 
@@ -457,7 +483,8 @@ The following stages are complete:
 - random human spot-checking of model-agreed keep records;
 - final materials-relevance filtering;
 - generation of 300 QA candidates; and
-- mechanical validation of the QA candidates.
+- mechanical validation of the QA candidates; and
+- the random 50-pair human QA audit.
 
 The remaining work includes:
 
@@ -469,16 +496,12 @@ Review generated QA pairs for semantic correctness and complete support from the
 
 Check preservation of original chemical formulas and identify any unresolved normalization or ambiguity issues.
 
-### 3. Random 50-Pair Human QA Audit
-
-Freeze the candidate set, record its hash, select 50 pairs using a recorded random seed, and audit them using categories E1–E7.
-
-### 4. QA Correction or Filtering
+### 3. QA Correction or Filtering
 
 Record and apply any corrections or removals identified after the original human audit.
 
 Corrections should be reported separately from the original audit findings.
 
-### 5. Contextual Open-Source Model Evaluation
+### 4. Contextual Open-Source Model Evaluation
 
 Evaluate an open-source model using the source abstracts as context and classify its responses according to the planned evaluation procedure.

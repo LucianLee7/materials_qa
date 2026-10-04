@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-03",
+  "population_size": 300,
+  "reviewed_pairs": 50,
+  "pairs_with_errors": 3,
+  "pairs_without_detected_errors": 47,
+  "observed_pair_error_rate": 0.06,
+  "category_counts": {
+    "E1": 0,
+    "E2": 0,
+    "E3": 0,
+    "E4": 0,
+    "E5": 0,
+    "E6": 3,
+    "E7": 0
+  },
+  "wilson_95_interval": {
+    "lower": 0.02061497034897397,
+    "upper": 0.16217091688838173,
+    "method": "Two-sided 95% Wilson score interval; binomial approximation to simple random sampling without replacement; no finite population correction."
+  },
+  "reviewed_answerability": {
+    "answerable": 43,
+    "not_stated": 7
+  },
+  "errors": [
+    {
+      "sample_number": 25,
+      "qa_id": "all_070",
+      "arxiv_id": "2609.18771",
+      "reviewer": "user",
+      "has_error": true,
+      "error_categories": [
+        "E6"
+      ],
+      "review_reason": "W is the unit watt, not a chemical formula in this context.",
+      "review_note": "User marked sample 25 E6 because W is a unit, and samples 21–24 ok. Original candidate unchanged."
+    },
+    {
+      "sample_number": 33,
+      "qa_id": "all_104",
+      "arxiv_id": "2608.22700",
+      "reviewer": "user",
+      "has_error": true,
+      "error_categories": [
+        "E6"
+      ],
+      "review_reason": "W is the unit watt, not a chemical formula in this context.",
+      "review_note": "User marked sample 33 E6 because W is a unit. Original candidate unchanged; other records in this batch not yet confirmed."
+    },
+    {
+      "sample_number": 40,
+      "qa_id": "all_159",
+      "arxiv_id": "2609.20486",
+      "reviewer": "user",
+      "has_error": true,
+      "error_categories": [
+        "E6"
+      ],
+      "review_reason": "As is an English word at the start of the sentence, not a chemical formula in this context.",
+      "review_note": "User marked sample 40 E6 and samples 36–39 ok. Original candidate unchanged."
+    }
+  ],
+  "candidate_sha256": "ce3ae53f0d3aedad2fd4a2ea606a30350556ebf31f23c2c5cbcdabeac929c710",
+  "candidate_modified": false,
+  "review_method": "Human user judgments following assistant-presented English QA/source excerpts, full abstracts for not-stated cases, Chinese translations and occasional field-specific prompts. Full source abstracts and all fields were available in qa_audit_review_50.md.",
+  "limitations": "Single reviewer; model-assisted and not blinded. Excerpts and field prompts may influence attention, translations may contain errors, and rare errors may be missed. The interval covers sampling uncertainty under the approximation, not reviewer error. No detected E1–E5/E7 errors does not prove their absence. Assessment concerns grounding in abstracts, not scientific truth.",
+  "not_stated_template_concentration": {
+    "audited_not_stated_pairs": 7,
+    "duration_related_pairs": 6,
+    "other_missing_information": "numerical uncertainty",
+    "note": "Not-stated questions showed template concentration around duration-related missing information: six of the seven not-stated questions in the audited sample ask about an unreported growth or deposition duration; the remaining question asks about numerical uncertainty. This limits coverage of different missing-information types and may make abstention evaluation less diverse. This is a dataset-level limitation, not an additional pair-level error assigned by the reviewer."
+  }
+}
