@@ -1,0 +1,19 @@
+{
+  "checked_on": "2026-10-04",
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "responses": 300,
+  "unique_qa_ids": 300,
+  "source_id_coverage_complete": true,
+  "reference_fields_match": true,
+  "input_hashes_match": true,
+  "checkpoint_settings_match": true,
+  "answerability": {
+    "answerable": 240,
+    "not_stated": 60
+  },
+  "empty_responses": 0,
+  "hit_token_limit": 2,
+  "classifications_pending": 300,
+  "pilot_responses": 5,
+  "note": "Mechanical checks only; response support and correctness have not been classified. Pilot is separate and is not added to the 300-response denominator."
+}

@@ -6,7 +6,7 @@ Abstract collection, deduplication, materials-relevance screening, human relevan
 
 The final filtered corpus contains **1,479 abstracts**, with **21 abstracts excluded** from the original 1,500-record corpus.
 
-A set of **300 candidate QA pairs** has been generated and mechanically validated. The random 50-pair human QA audit is complete: three pairs contain E6 errors (6% observed pair error rate). Confirmed QA errors have been corrected in a separate copy, and targeted chemical-formula checks are complete. Contextual open-source model evaluation is the only remaining planned stage.
+A set of **300 candidate QA pairs** has been generated and mechanically validated. The random 50-pair human QA audit is complete: three pairs contain E6 errors (6% observed pair error rate). Confirmed QA errors have been corrected in a separate copy, and targeted chemical-formula checks are complete. Contextual model inference is complete for all 300 pairs; response classification and evaluation reporting remain pending.
 
 This data card describes the abstract corpus, relevance-screening process, and current QA candidate set. It does not represent a fully audited final QA dataset.
 
@@ -374,7 +374,7 @@ The original candidates remain unchanged. Post-audit corrections are recorded se
 
 ## Post-Audit QA Corrections
 
-A separate corrected candidate file is stored in `data/processed/qa/materials_qa_corrected.jsonl`. It currently contains all 300 pairs, with 11 non-chemical entries removed from `chemical_formulas` across ten pairs after user confirmation. These include unit W, the English word As, and the magnetic B--H relationship. Questions, answers, evidence passages and original candidate records were not changed. No QA pairs were removed (300 input, 0 removed, 300 remaining).
+A separate corrected candidate file is stored in `data/processed/qa/materials_qa_corrected.jsonl`. It currently contains all 300 pairs, with 11 non-chemical entries removed from `chemical_formulas` across ten pairs. These include unit W, the English word As, and the magnetic B--H relationship. Questions, answers, evidence passages and original candidate records were not changed. No QA pairs were removed (300 input, 0 removed, 300 remaining).
 
 The corrections are recorded in `data/processed/qa/qa_corrections.jsonl`. Three corrected pairs were identified in the original random audit; seven were confirmed in a targeted post-audit review. The original audit remains three errors in 50 pairs (6%). Post-audit findings do not retrospectively replace the original audit decisions. The targeted review of standalone W, As and B--H entries is complete; five W entries denoting tungsten were explicitly retained. This does not constitute a full semantic review of every formula annotation. Mechanical checks of the corrected file are recorded in `data/processed/qa/qa_corrected_checks.json`.
 
@@ -391,6 +391,22 @@ python3 random_sample.py data/processed/qa/materials_qa_all.jsonl /tmp/qa_audit_
 ```
 
 For the agreed-keep sample, the script joins the retained Gemini and Sol classification files by arXiv ID, filters to the 1,465 joint keep records, and preserves corpus order before sampling. The source is the original 1,500-record deduplicated corpus, not the final filtered corpus. The QA audit uses the original candidate file, not the corrected copy. Reproduction was verified against all three retained sample manifests.
+
+---
+
+## Contextual Model Inference
+
+On 4 October 2026, Qwen2.5-1.5B-Instruct generated responses to all 300 corrected QA pairs on a Colab Tesla T4. Each model input contained the full source abstract and question; reference answers, answerability labels and supporting passages were stored only in the output, not supplied to the model.
+
+The run used model revision `989aa7980e4cf806f80c7fef2b1adb7bc71aa306`, greedy decoding (`do_sample=false`), a limit of 128 new tokens, seed 66 and bfloat16 weights. Exact prompts, input hashes, software versions and GPU details are stored in `data/evaluation/run_manifest.json`.
+
+All 300 QA IDs are present exactly once. Reference fields and input hashes match the repository files. Empty responses: 0; responses marked as hitting the token limit: 2. These checks do not measure answer correctness. All 300 response classifications remain pending.
+
+- `data/evaluation/qwen_responses.jsonl`: the 300 model responses and reference fields.
+- `data/evaluation/run_manifest.json`: model and run provenance.
+- `data/evaluation/checkpoint_settings.json`: settings used to verify resumable inference.
+- `data/evaluation/pilot_responses.jsonl`: five execution-pilot responses, separate from the formal denominator.
+- `data/evaluation/response_checks.json`: ingestion checks and their limitations.
 
 ---
 
@@ -492,4 +508,4 @@ The only remaining planned stage is:
 
 ### Contextual Open-Source Model Evaluation
 
-Evaluate an open-source instruct model on the 300 corrected QA pairs, providing both the source abstract and the question for every pair. Save its responses, classify them as supported, unsupported, or correctly abstained using a documented method, and report results, failure examples and evaluation limitations.
+Inference on all 300 corrected QA pairs is complete. Classify the saved responses as supported, unsupported, or correctly abstained using a documented method, and report results, failure examples and evaluation limitations.
