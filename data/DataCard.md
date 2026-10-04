@@ -6,7 +6,7 @@ Abstract collection, deduplication, materials-relevance screening, human relevan
 
 The final filtered corpus contains **1,479 abstracts**, with **21 abstracts excluded** from the original 1,500-record corpus.
 
-A set of **300 candidate QA pairs** has been generated and mechanically validated. The random 50-pair human QA audit is complete: three pairs contain E6 errors (6% observed pair error rate). Corrections, further semantic and chemical-formula checks beyond the sample, and contextual open-source model evaluation remain pending.
+A set of **300 candidate QA pairs** has been generated and mechanically validated. The random 50-pair human QA audit is complete: three pairs contain E6 errors (6% observed pair error rate). Confirmed QA errors have been corrected in a separate copy, and targeted chemical-formula checks are complete. Contextual open-source model evaluation is the only remaining planned stage.
 
 This data card describes the abstract corpus, relevance-screening process, and current QA candidate set. It does not represent a fully audited final QA dataset.
 
@@ -482,26 +482,14 @@ The following stages are complete:
 - human review of model-agreed exclude/review records;
 - random human spot-checking of model-agreed keep records;
 - final materials-relevance filtering;
-- generation of 300 QA candidates; and
-- mechanical validation of the QA candidates; and
-- the random 50-pair human QA audit.
+- generation of 300 QA candidates;
+- mechanical validation of the QA candidates;
+- the random 50-pair human QA audit;
+- targeted chemical-formula review; and
+- corrections recorded separately from the original audit.
 
-The remaining work includes:
+The only remaining planned stage is:
 
-### 1. Semantic Review of QA Candidates
+### Contextual Open-Source Model Evaluation
 
-Review generated QA pairs for semantic correctness and complete support from the source abstract.
-
-### 2. Chemical Formula Review
-
-Check preservation of original chemical formulas and identify any unresolved normalization or ambiguity issues.
-
-### 3. QA Correction or Filtering
-
-Record and apply any corrections or removals identified after the original human audit.
-
-Corrections should be reported separately from the original audit findings.
-
-### 4. Contextual Open-Source Model Evaluation
-
-Evaluate an open-source model using the source abstracts as context and classify its responses according to the planned evaluation procedure.
+Evaluate an open-source instruct model on the 300 corrected QA pairs, providing both the source abstract and the question for every pair. Save its responses, classify them as supported, unsupported, or correctly abstained using a documented method, and report results, failure examples and evaluation limitations.
