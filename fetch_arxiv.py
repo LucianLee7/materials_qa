@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 import json
 from pathlib import Path
 
-# 设置 API 地址和查询条件
+# Set the API endpoint and query parameters.
 url = "https://export.arxiv.org/api/query"
 
 params = {
@@ -14,14 +14,14 @@ params = {
     "sortOrder": "descending",
 }
 
-# 发送请求，检查 HTTP 错误
+# Send the request and check for HTTP errors.
 response = requests.get(url, params=params, timeout=60)
 response.raise_for_status()
 
 print("Request URL:", response.url)
 print("HTTP status code:", response.status_code)
 
-# 解析 XML，并设置 Atom 命名空间
+# Parse the XML response and define the Atom namespace.
 root = ET.fromstring(response.content)
 
 namespaces = {
@@ -33,7 +33,7 @@ entries = root.findall("atom:entry", namespaces)
 print("Number of records returned:", len(entries))
 
 papers = []
-# 提取论文信息，保留摘要原文
+# Extract paper metadata and preserve the original abstract text.
 for entry in entries:
     arxiv_url = entry.findtext("atom:id", namespaces=namespaces)
     title = entry.findtext("atom:title", namespaces=namespaces)
@@ -49,13 +49,13 @@ for entry in entries:
     }
     papers.append(paper)
 
-# 创建原始数据目录
+# Create the raw data directory.
 output_dir = Path("data/raw")
 output_dir.mkdir(parents=True, exist_ok=True)
 
 output_path = output_dir / "arxiv_sample.jsonl"
 
-# 每一行保存一个完整的 JSON 对象
+# Write one complete JSON object per line.
 with output_path.open("w", encoding="utf-8") as file:
     for paper in papers:
         file.write(json.dumps(paper, ensure_ascii=False) + "\n")

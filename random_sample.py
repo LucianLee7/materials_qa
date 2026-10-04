@@ -20,7 +20,7 @@ def main():
     parser.add_argument("--sol", type=Path, default=Path("data/processed/screening/sol_classifications.jsonl"))
     args = parser.parse_args()
 
-    # 记录输入哈希，帮助确认复现时使用的是同一版本的数据。
+    # Record the input hash to verify the data version when reproducing samples.
     input_bytes = args.input.read_bytes()
     records = []
     for line_number, line in enumerate(input_bytes.decode("utf-8").splitlines(), 1):
@@ -44,7 +44,7 @@ def main():
             if any(label not in ("keep", "exclude", "review") for label in labels[name].values()):
                 raise ValueError(f"{name} classification file contains invalid labels")
             model_sources[name] = {"file": str(path), "sha256": hashlib.sha256(raw).hexdigest()}
-        # 先过滤，保留原始文件顺序，再对符合条件的总体随机抽样。
+        # Filter in source order, then randomly sample from eligible records.
         eligible = []
         for record in records:
             arxiv_id = record["arxiv_id"]
@@ -61,7 +61,7 @@ def main():
     if args.output.exists() or manifest_path.exists():
         raise FileExistsError("Output or manifest already exists; choose a new output path")
 
-    # 对记录位置不放回抽样；输出保留随机选中的顺序，不排序。
+    # Sample record positions without replacement and preserve the selected order.
     indices = random.Random(SEED).sample(range(len(records)), args.count)
     sample = [records[index] for index in indices]
     manifest = {
@@ -83,7 +83,7 @@ def main():
     }
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    # x 模式防止覆盖已有数据；不增加或修改原记录字段。
+    # Use exclusive creation to avoid overwriting files; preserve original record fields.
     with args.output.open("x", encoding="utf-8") as file:
         for record in sample:
             file.write(json.dumps(record, ensure_ascii=False) + "\n")

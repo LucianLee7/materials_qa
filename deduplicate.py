@@ -7,17 +7,17 @@ input_path = Path("data/raw/arxiv_sample.jsonl")
 output_path = Path("data/processed/arxiv_deduplicated.jsonl")
 report_path = Path("data/processed/deduplication_report.json")
 
-# 用 arXiv ID 作为键，保存每篇论文
+# Store papers using their arXiv IDs as keys.
 unique_papers = {}
 input_count = 0
 
 with input_path.open("r", encoding="utf-8") as file:
     for line_number, line in enumerate(file, start=1):
-        # 遇到格式错误时停止，避免悄悄丢失记录
+        # Stop on malformed input rather than silently dropping records.
         paper = json.loads(line)
         source_url = paper["source_url"]
 
-        # 分离论文 ID 和版本号
+        # Separate the arXiv ID from its version number.
         versioned_id = source_url.split("/abs/", 1)[1]
         match = re.fullmatch(r"(.+)v(\d+)", versioned_id)
 
@@ -33,7 +33,7 @@ with input_path.open("r", encoding="utf-8") as file:
         paper["arxiv_version"] = version
         input_count += 1
 
-        # 首次遇到该 ID 时保存；重复时只保留更高版本
+        # Keep the first record for each ID; replace it only with a higher version.
         if arxiv_id not in unique_papers:
             unique_papers[arxiv_id] = paper
         elif version > unique_papers[arxiv_id]["arxiv_version"]:

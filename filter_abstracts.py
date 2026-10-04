@@ -14,7 +14,7 @@ missing_abstract_count = 0
 for paper in papers:
     abstract = paper.get("abstract")
 
-    # 检查摘要是否为字符串，以及是否只包含空白
+    # Check whether the abstract is a string containing non-whitespace text.
     if not isinstance(abstract, str) or not abstract.strip():
         missing_abstract_count += 1
 
