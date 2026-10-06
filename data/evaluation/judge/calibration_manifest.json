@@ -1,0 +1,48 @@
+{
+  "seed": 66,
+  "method": "Sequential random.Random(66).sample calls on answerable then not_stated pools in response-file order",
+  "strata": {
+    "answerable": 20,
+    "not_stated": 10
+  },
+  "selected_qa_ids": [
+    "all_019",
+    "all_080",
+    "all_112",
+    "all_237",
+    "all_064",
+    "all_202",
+    "all_115",
+    "all_076",
+    "all_066",
+    "all_221",
+    "all_201",
+    "all_144",
+    "all_025",
+    "all_191",
+    "all_222",
+    "all_238",
+    "all_216",
+    "all_127",
+    "all_048",
+    "all_120",
+    "all_274",
+    "all_249",
+    "all_291",
+    "all_286",
+    "all_245",
+    "all_297",
+    "all_264",
+    "all_287",
+    "all_251",
+    "all_267"
+  ],
+  "source_sha256": {
+    "qa": "fc402867070c7abefd9c90432f805efd232bb574687e576b3888d3af993c0d6b",
+    "abstracts": "2e3d629affe20270caab8ae780d6f4acedc64d0b8d9a84961f92be9b3d4ed3eb",
+    "responses": "b523dbe0b8e3a4182b550b309c50e8836363a079cc138b258969b1372810e6a5",
+    "rubric": "a2c4e9e429713960cb80d979b8425047a32cac43599b78f11270a723cb5ace53"
+  },
+  "purpose": "AI-judge calibration, separate from the original 50-pair human QA audit",
+  "limitations": "Stratified sample overrepresents not-stated cases; raw counts are not full-dataset performance estimates. Human labels are pending."
+}

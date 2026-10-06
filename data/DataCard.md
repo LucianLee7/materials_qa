@@ -408,6 +408,18 @@ All 300 QA IDs are present exactly once. Reference fields and input hashes match
 - `data/evaluation/pilot_responses.jsonl`: five execution-pilot responses, separate from the formal denominator.
 - `data/evaluation/response_checks.json`: ingestion checks and their limitations.
 
+### AI-Judge Calibration Pilot
+
+On 6 October 2026, the user selected Codex Sol as the response judge. A separate stratified pilot sampled 20 answerable and 10 not-stated cases using sequential `random.Random(66).sample` calls in response-file order. Run `python3 prepare_judge_sample.py` to reproduce the inputs and sampling manifest. This is separate from the original 50-pair human QA audit.
+
+The rubric is stored in `prompts/judge_model_responses.txt`. The initial judge rubric was drafted with AI assistance and then manually reviewed and finalized before evaluation. Judgments use the full abstract as evidence, with reference answers treated as fallible aids. Supported responses must answer the question sufficiently without unsupported substantive claims. Correct abstention is evaluated semantically; compliance with the exact output instruction `not stated` is recorded separately. The operational unsupported category includes incomplete or off-topic answers as well as fabricated claims; the reason explains each judgment.
+
+The current Codex Sol assistant provisionally classified the pilot as **19 supported, 4 unsupported and 7 correctly abstained**. One incomplete-answer case (`all_202`) is flagged for human review. These are AI labels, not human findings. Human calibration labels and judge-human agreement remain pending. The pilot overrepresents not-stated cases, so these raw counts must not be presented as performance estimates for all 300 responses.
+
+Inputs, hashes and ordered IDs are stored in `data/evaluation/judge/calibration_inputs.jsonl` and `calibration_manifest.json`; provisional judgments are in `codex_calibration_judgments.jsonl`, with a readable review in `calibration_review.md`. The original QA files, human audit and Qwen responses were not changed.
+
+Individual response judgments used no external sources. Only input sampling is reproducible exactly; repeating AI judgment may produce different labels.
+
 ---
 
 ## Files and Provenance
