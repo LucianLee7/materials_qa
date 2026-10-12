@@ -2,11 +2,11 @@
 
 Date: 2026-10-06. This is AI judgment, not a human audit. The judge display name is Codex Sol, as reported by the user. Exact model ID, snapshot and sampling settings were not available to the judging assistant and are not inferred. The current conversation contained earlier project discussions; this was not an isolated or blinded API run. No external sources were used to judge individual responses.
 
-Sample: 20 answerable and 10 not-stated cases, seed 66. These stratified pilot counts are not estimates of full-dataset performance. Human calibration is pending.
+Sample: 20 answerable and 10 not-stated cases, seed 66. These stratified pilot counts are not estimates of full-dataset performance. Human calibration was completed on 12 October 2026: 30/30 semantic labels agree (100% observed agreement). This non-blinded comparison is not an independent accuracy estimate.
 
-Provisional counts: 19 supported, 4 unsupported, 7 correctly abstained. The incomplete-answer case all_202 requires explicit human review of the completeness rule.
+Provisional counts: 19 supported, 4 unsupported, 7 correctly abstained. The human review confirmed unsupported for the incomplete-answer case all_202 under the strict completeness rule.
 
-Classify each item independently from the full abstract in calibration_inputs.jsonl before comparing with the AI labels below. Record human labels separately; do not overwrite the AI decisions. No human agreement or judge accuracy has yet been measured.
+Human labels are retained in codex_sol_human_calibration_30.csv, with method and limitations in codex_sol_human_calibration_report.md. Original AI semantic labels are unchanged. Two explanatory abstentions were flagged for format deviations; capitalization alone was accepted by the human reviewer. These format decisions are separate from semantic labels.
 
 ## 1. all_019
 
@@ -20,7 +20,7 @@ Reason: The stated synthesis method and subsequent air annealing match the abstr
 
 Evidence: prepared by the solid-state organo-nitrate synthesis and annealed in air.
 
-Human label: pending
+Human label: supported
 
 ## 2. all_080
 
@@ -34,7 +34,7 @@ Reason: The response correctly states both comparisons: lower errors than PBE/SC
 
 Evidence: ACBN0 with the fully localized limit (FLL) as the double-counting treatment reduces the aggregate band gap errors relative to the Perdew-Burke-Ernzerhof (PBE) and strongly constrained and appropriately normed (SCAN) functionals, reaching an accuracy comparable to the Heyd-Scuseria-Ernzerhof functional (HSE06).
 
-Human label: pending
+Human label: supported
 
 ## 3. all_112
 
@@ -48,7 +48,7 @@ Reason: The requested texture-recognition accuracy is 98%.
 
 Evidence: achieves a texture recognition accuracy of 98%
 
-Human label: pending
+Human label: supported
 
 ## 4. all_237
 
@@ -62,7 +62,7 @@ Reason: The concise answer preserves the sub-10-nm bound; repeating the qualitat
 
 Evidence: domain walls in Zn1-xMgxO exhibit negligible lateral mobility (sub 10nm)
 
-Human label: pending
+Human label: supported
 
 ## 5. all_064
 
@@ -76,7 +76,7 @@ Reason: The response gives the requested decline range; the experimental context
 
 Evidence: Accuracy declined by 50-78% across four families
 
-Human label: pending
+Human label: supported
 
 ## 6. all_202
 
@@ -90,7 +90,7 @@ Reason: The question asks which quantities correlate with mobility. The response
 
 Evidence: DW mobility and depinning thresholds correlate with the interfacial Dzyaloshinskii-Moriya interaction and domain-wall width
 
-Human label: pending
+Human label: unsupported
 
 ## 7. all_115
 
@@ -104,7 +104,7 @@ Reason: The requested mean absolute error is 0.04; repeating the sample count is
 
 Evidence: reproduces 56 silver-nanowire samples across four diameters to a mean absolute error of 0.04
 
-Human label: pending
+Human label: supported
 
 ## 8. all_076
 
@@ -118,7 +118,7 @@ Reason: The response preserves the stated 1.18-times SCF-loop speedup.
 
 Evidence: yields a $1.18\times$ SCF-loop speedup.
 
-Human label: pending
+Human label: supported
 
 ## 9. all_066
 
@@ -132,7 +132,7 @@ Reason: The response gives classification accuracy, 86.4%, rather than the separ
 
 Evidence: FRPN achieves 86.4% accuracy and 90.6% ROC-AUC
 
-Human label: pending
+Human label: supported
 
 ## 10. all_221
 
@@ -146,7 +146,7 @@ Reason: The response preserves the lower-bound qualifier more than 170%.
 
 Evidence: still overestimates the modulus by more than 170%.
 
-Human label: pending
+Human label: supported
 
 ## 11. all_201
 
@@ -160,7 +160,7 @@ Reason: The predicted feature is the giant symmetry-unlocked cross-layer AHC sta
 
 Evidence: we uncover a giant, symmetry-unlocked cross-layer anomalous Hall conductivity (AHC) in the vdW altermagnet V2Te2O.
 
-Human label: pending
+Human label: supported
 
 ## 12. all_144
 
@@ -174,7 +174,7 @@ Reason: The response gives the Curie temperature of the reported ceramic, with t
 
 Evidence: a Curie temperature of 661$°C$
 
-Human label: pending
+Human label: supported
 
 ## 13. all_025
 
@@ -188,7 +188,7 @@ Reason: Both the growth method and graphene/Ge(111) substrate are explicitly sup
 
 Evidence: single crystalline MnPtGa membranes grown by molecular beam epitaxy on graphene/Ge(111)
 
-Human label: pending
+Human label: supported
 
 ## 14. all_191
 
@@ -202,7 +202,7 @@ Reason: The approximate value 650 K and the material identification are supporte
 
 Evidence: Fe3Ge, which exhibits a high Curie temperature of ~ 650 K.
 
-Human label: pending
+Human label: supported
 
 ## 15. all_222
 
@@ -216,7 +216,7 @@ Reason: The response identifies the heterostructure band gap, not either monolay
 
 Evidence: The heterostructure shows type-II band alignment with an indirect band gap of 2.17 eV
 
-Human label: pending
+Human label: supported
 
 ## 16. all_238
 
@@ -230,7 +230,7 @@ Reason: The response correctly states higher electron than hole mobility.
 
 Evidence: higher electron than hole mobility.
 
-Human label: pending
+Human label: supported
 
 ## 17. all_216
 
@@ -244,7 +244,7 @@ Reason: The enhanced conductivity and the additional Fermi-level explanation are
 
 Evidence: enhanced intrinsic spin Hall conductivity in W-rich BCC NiW alloys, associated with the Fermi level lying within a spin-orbit-coupling-induced band gap.
 
-Human label: pending
+Human label: supported
 
 ## 18. all_127
 
@@ -258,7 +258,7 @@ Reason: The response states the supported finite net magnetization and correctly
 
 Evidence: The presence of asymmetric edge states involving d and p orbitals in non-hydrogen-passivated zigzag MoS2 nanoribbons, in contrast to phosphorene, h-BN, and graphene nanoribbons, results in a finite net magnetization.
 
-Human label: pending
+Human label: supported
 
 ## 19. all_048
 
@@ -272,7 +272,7 @@ Reason: The response preserves the speedup bound, comparator and device-size con
 
 Evidence: Even for devices containing fewer than 500 atoms, HamGNN-NEGF achieves speedups exceeding three orders of magnitude over fully self-consistent DFT-NEGF
 
-Human label: pending
+Human label: supported
 
 ## 20. all_120
 
@@ -286,7 +286,7 @@ Reason: The value 0.36, room-temperature/no-field conditions and added material 
 
 Evidence: Here, we report a record-high transverse thermoelectric figure of merit $z_{yx}T$ of 0.36 in Ni$_{50}$Fe$_{50}$/Bi$_{0.2}$Sb$_{1.8}$Te$_{3}$-based ATML at room temperature without an external magnetic field.
 
-Human label: pending
+Human label: supported
 
 ## 21. all_274
 
@@ -300,7 +300,7 @@ Reason: The abstract names substrates but provides no growth duration or claim t
 
 Evidence: grown on different substrates i.e., SrTiO$_3$(100), LaAlO$_3$(100), Si (100).
 
-Human label: pending
+Human label: unsupported
 
 ## 22. all_249
 
@@ -314,7 +314,7 @@ Reason: 18 is the number of autonomous experiments, not a deposition duration in
 
 Evidence: In a single campaign of 18 autonomous experiments using LiCoO2 (001) thin-film deposition as a testbed
 
-Human label: pending
+Human label: unsupported
 
 ## 23. all_291
 
@@ -328,7 +328,7 @@ Reason: The full abstract discusses training subspaces and prediction tasks but 
 
 Evidence: None: requested information is absent from the full abstract.
 
-Human label: pending
+Human label: correctly_abstained
 
 ## 24. all_286
 
@@ -342,7 +342,7 @@ Reason: The full abstract gives a PBE band gap of 0.35 eV but supplies no numeri
 
 Evidence: None: requested information is absent from the full abstract.
 
-Human label: pending
+Human label: correctly_abstained
 
 ## 25. all_245
 
@@ -356,7 +356,7 @@ Reason: The full abstract describes thermal treatment and irradiation of an anne
 
 Evidence: None: requested information is absent from the full abstract.
 
-Human label: pending
+Human label: correctly_abstained
 
 ## 26. all_297
 
@@ -370,7 +370,7 @@ Reason: The full abstract describes HiPoly architecture, predictions and design 
 
 Evidence: None: requested information is absent from the full abstract.
 
-Human label: pending
+Human label: correctly_abstained
 
 ## 27. all_264
 
@@ -384,7 +384,7 @@ Reason: The response explicitly acknowledges that the duration is absent; its ad
 
 Evidence: None: requested information is absent from the full abstract.
 
-Human label: pending
+Human label: correctly_abstained
 
 ## 28. all_287
 
@@ -398,7 +398,7 @@ Reason: The full abstract reports a 2.31 eV G0W0 gap but no numerical uncertaint
 
 Evidence: None: requested information is absent from the full abstract.
 
-Human label: pending
+Human label: correctly_abstained
 
 ## 29. all_251
 
@@ -412,7 +412,7 @@ Reason: The response clearly acknowledges the absent sintering duration without 
 
 Evidence: None: requested information is absent from the full abstract.
 
-Human label: pending
+Human label: correctly_abstained
 
 ## 30. all_267
 
@@ -426,4 +426,4 @@ Reason: The question asks duration. The response gives a temperature range and d
 
 Evidence: at temperatures between 400 $^o$C and 800 $^o$C.
 
-Human label: pending
+Human label: unsupported

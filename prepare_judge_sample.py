@@ -64,7 +64,7 @@ def main():
         "selected_qa_ids": [item["qa_id"] for item in items],
         "source_sha256": {name: hashlib.sha256(path.read_bytes()).hexdigest() for name, path in SOURCES.items()},
         "purpose": "AI-judge calibration, separate from the original 50-pair human QA audit",
-        "limitations": "Stratified sample overrepresents not-stated cases; raw counts are not full-dataset performance estimates. Human labels are pending.",
+        "limitations": "Stratified sample overrepresents not-stated cases; raw counts are not full-dataset performance estimates. Human labels are stored separately from AI judgments.",
     }
     OUTPUT.mkdir(parents=True, exist_ok=True)
     outputs = {

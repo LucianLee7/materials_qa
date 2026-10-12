@@ -44,5 +44,5 @@
     "rubric": "a2c4e9e429713960cb80d979b8425047a32cac43599b78f11270a723cb5ace53"
   },
   "purpose": "AI-judge calibration, separate from the original 50-pair human QA audit",
-  "limitations": "Stratified sample overrepresents not-stated cases; raw counts are not full-dataset performance estimates. Human labels are pending."
+  "limitations": "Stratified sample overrepresents not-stated cases; raw counts are not full-dataset performance estimates. Human labels are stored separately from AI judgments."
 }
