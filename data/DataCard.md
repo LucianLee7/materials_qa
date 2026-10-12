@@ -6,7 +6,7 @@ Abstract collection, deduplication, materials-relevance screening, human relevan
 
 The final filtered corpus contains **1,479 abstracts**, with **21 abstracts excluded** from the original 1,500-record corpus.
 
-A set of **300 candidate QA pairs** has been generated and mechanically validated. The random 50-pair human QA audit is complete: three pairs contain E6 errors (6% observed pair error rate). Confirmed QA errors have been corrected in a separate copy, and targeted chemical-formula checks are complete. Contextual model inference is complete for all 300 pairs; response classification and evaluation reporting remain pending.
+A set of **300 candidate QA pairs** has been generated and mechanically validated. The random 50-pair human QA audit is complete: three pairs contain E6 errors (6% observed pair error rate). Confirmed QA errors have been corrected in a separate copy, and targeted chemical-formula checks are complete. Contextual model inference and full AI response classification are complete for all 300 pairs. The 14 flagged decisions have received human adjudication. The 30-case random spot-check of unflagged judgments and clarification of its two disagreements are complete. Current full-set labels incorporate 44 human-reviewed decisions; 256 labels remain AI-only. The final write-up remains pending.
 
 This data card describes the abstract corpus, relevance-screening process, and current QA candidate set. It does not represent a fully audited final QA dataset.
 
@@ -400,7 +400,7 @@ On 4 October 2026, Qwen2.5-1.5B-Instruct generated responses to all 300 correcte
 
 The run used model revision `989aa7980e4cf806f80c7fef2b1adb7bc71aa306`, greedy decoding (`do_sample=false`), a limit of 128 new tokens, seed 66 and bfloat16 weights. Exact prompts, input hashes, software versions and GPU details are stored in `data/evaluation/run_manifest.json`.
 
-All 300 QA IDs are present exactly once. Reference fields and input hashes match the repository files. Empty responses: 0; responses marked as hitting the token limit: 2. These checks do not measure answer correctness. All 300 response classifications remain pending.
+All 300 QA IDs are present exactly once. Reference fields and input hashes match the repository files. Empty responses: 0; responses marked as hitting the token limit: 2. These checks do not measure answer correctness. All 300 responses have since been classified by an AI judge; the full-run results and subsequent human adjudication are described below.
 
 - `data/evaluation/qwen_responses.jsonl`: the 300 model responses and reference fields.
 - `data/evaluation/run_manifest.json`: model and run provenance.
@@ -419,6 +419,30 @@ The current Codex Sol assistant provisionally classified the pilot as **19 suppo
 Inputs, hashes and ordered IDs are stored in `data/evaluation/judge/calibration_inputs.jsonl` and `calibration_manifest.json`; provisional judgments are in `codex_calibration_judgments.jsonl`, with a readable review in `calibration_review.md`. The human reviewer separately flagged explanatory abstentions `all_264` and `all_251` for output-format deviations and accepted capitalization-only variation for `all_287`. These format flags do not change semantic classifications; the other 27 cases have no separate format judgment recorded. This is not an exhaustive exact-string compliance audit. The original QA files, human QA audit and Qwen responses were not changed.
 
 Individual response judgments used no external sources. Only input sampling is reproducible exactly; repeating AI judgment may produce different labels.
+
+---
+
+### Full Response Evaluation and Human Adjudication
+
+On 12 October 2026, a separate Codex conversation classified all 300 Qwen responses afresh using full abstracts and the response rubric. The original AI counts were 215 supported (71.67%), 42 unsupported (14.00%) and 43 correctly abstained (14.33%). Fourteen decisions were flagged for human review. The report describes a fresh conversation-based run, with reference answers visible and prior project-level background available; it is not a fully blinded evaluation. The exact full-run judge model snapshot is not established.
+
+All 14 flagged cases were subsequently adjudicated by the user after presentation of full abstracts, Chinese translations, Qwen responses, references and AI judgments. Final human decisions agree with 12 of 14 original AI labels (85.71% on this selected subset). This is descriptive agreement on difficult, selected cases, not an estimate of overall judge accuracy. `all_069` changed from supported to unsupported; `all_164` changed from unsupported to supported. Aggregate counts remain **215 supported, 42 unsupported and 43 correctly abstained**, despite the two item-level changes.
+
+For the 240 reference-answerable questions, the current classifications are 215 supported and 25 unsupported. For the 60 reference-not-stated questions, they are 43 correctly abstained and 17 unsupported. Supported answers plus correct abstentions total 258/300 (86.00%), a rubric-based result on this dataset rather than independently verified scientific accuracy.
+
+The user identified ambiguity in `all_152`, whose question does not distinguish measured from calculated Hall conductivity, and classified the Qwen response as supported. This QA concern is retained separately; the original question was not changed. Human labels are preserved separately from AI decisions. The 14 flagged full-run decisions received human adjudication; a subsequent random spot-check of 30 unflagged cases is described below. Together these cover 44 distinct full-run records, leaving 256 AI-only labels. The earlier 30-case calibration remains a separate stage.
+
+Original AI judgments and their report are in `data/evaluation/judge/codex_full_judgments.jsonl` and `codex_full_evaluation_report.md`. Human decisions are in `full_human_review.jsonl`, with a summary in `full_human_review_report.md`. Current full-set labels, including their AI or human basis, are in `qwen_classifications_adjudicated.jsonl`. The original QA, Qwen responses and AI judgments are preserved.
+
+---
+
+### Random Human Spot Check of Unflagged Judgments
+
+On 12 October 2026, 30 cases were sampled uniformly without replacement from the 286 unflagged full-run AI judgments using seed 66. The user reviewed complete abstracts, Chinese translations, questions and Qwen responses without the AI labels, reasons or reference answers being shown during initial presentation. Earlier project context and previous exposure to some calibration cases mean the review was not fully blinded or independent.
+
+Initial human labels were 22 supported, 3 unsupported and 5 correctly abstained, agreeing with 28 of 30 original AI classifications (93.33% observed agreement before clarification). After the assistant highlighted both disagreements and relevant rubric concerns, the user explicitly corrected `all_253` from correctly abstained to unsupported and `all_202` from supported to unsupported. Final sample labels are 21 supported, 5 unsupported and 4 correctly abstained, with 30/30 agreement after clarification. This final 100% incorporates discussion informed by AI judgments; it must not replace the initial 93.33% comparison or be presented as independent judge accuracy. Neither percentage represents full-dataset response success.
+
+Initial choices and correction notes are retained in `data/evaluation/judge/unflagged_human_spotcheck.jsonl`; sampling settings and ordered IDs are in `unflagged_spotcheck_manifest.json`, with comparison results in `unflagged_spotcheck_report.md`. All 30 final spot-check decisions have been applied to `qwen_classifications_adjudicated.jsonl` alongside the 14 flagged-case adjudications. Current totals remain 215 supported, 42 unsupported and 43 correctly abstained; 44 records have a human review basis and 256 remain AI-only. Original QA, Qwen responses, AI judgments and earlier calibration records are unchanged.
 
 ---
 
@@ -520,4 +544,4 @@ The only remaining planned stage is:
 
 ### Contextual Open-Source Model Evaluation
 
-Inference on all 300 corrected QA pairs is complete. Classify the saved responses as supported, unsupported, or correctly abstained using a documented method, and report results, failure examples and evaluation limitations. The 30-case Codex Sol calibration comparison is complete; full response classification remains pending.
+Inference, the 30-case judge calibration, full AI response classification and human adjudication of all 14 flagged cases are complete. The 30-case random human spot-check of unflagged full-run decisions is complete. Its two disagreements have been clarified and current classification records updated. Complete the final write-up with results, failure examples and limitations.
