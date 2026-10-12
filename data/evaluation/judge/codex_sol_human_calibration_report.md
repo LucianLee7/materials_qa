@@ -15,7 +15,7 @@ Two semantically correct abstentions (**all_264** and **all_251**) were separate
 
 ## Method
 
-1. The review set was drawn from `calibration_inputs.jsonl`. Each human review considered the complete abstract, question and Qwen response as the basis for classification.
+1. The review set was drawn from generated calibration inputs. The retained `calibration_manifest.json` records the selected IDs; `python3 scripts/prepare_judge_sample.py` reconstructs the inputs from the retained corpus, QA and Qwen responses. Each human review considered the complete abstract, question and Qwen response as the basis for classification.
 2. The semantic rubric distinguished **supported** (sufficient, grounded and complete answer), **unsupported** (incorrect, ungrounded, off-topic or materially incomplete response), and **correctly_abstained** (appropriate acknowledgement that the abstract does not provide the requested answer).
 3. Human labels were preserved separately from provisional Codex Sol labels. Format compliance was a separate dimension for explicitly reviewed cases.
 4. Codex Sol was the reported display name; exact model identifier, snapshot and sampling parameters were unavailable. No outside sources were used for the original judgments.

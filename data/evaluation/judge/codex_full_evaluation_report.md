@@ -219,7 +219,7 @@ Supported responses had to sufficiently answer the actual question and avoid uns
 
 Correct semantic abstentions required checking the complete abstract for the absent information. Explanatory abstentions could include supported context, but invented durations, causal details or procedures failed. Correct abstentions have empty evidence arrays. Unsupported cases cite useful real passages when available; an empty array is used when no passage can substantiate absence. Exact-string compliance was computed independently from the unaltered saved response.
 
-Judgments were persisted incrementally. A helper handled joins and exact-quotation checks; it did not infer labels. The accompanying validation script checks structure, evidence substrings and counts, and builds this report from the already assigned judgments. Keyword matching, exact reference-answer matching and automatic classification heuristics were not used. The two token-limit responses (all_079 and all_211) were judged by their actual content and essential omissions, not failed automatically for reaching a limit.
+Judgments were persisted incrementally. A helper handled joins and exact-quotation checks; it did not infer labels. At evaluation time, structural checks verified evidence substrings and counts, and the report was built from the already assigned judgments. Keyword matching, exact reference-answer matching and automatic classification heuristics were not used. The two token-limit responses (all_079 and all_211) were judged by their actual content and essential omissions, not failed automatically for reaching a limit.
 
 ## Limitations
 

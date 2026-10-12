@@ -6,7 +6,7 @@ import random
 from pathlib import Path
 
 SEED = 66
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "data/evaluation/judge"
 SOURCES = {
     "qa": ROOT / "data/processed/qa/materials_qa_corrected.jsonl",

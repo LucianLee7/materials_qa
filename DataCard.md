@@ -376,18 +376,18 @@ The original candidates remain unchanged. Post-audit corrections are recorded se
 
 A separate corrected candidate file is stored in `data/processed/qa/materials_qa_corrected.jsonl`. It currently contains all 300 pairs, with 11 non-chemical entries removed from `chemical_formulas` across ten pairs. These include unit W, the English word As, and the magnetic B--H relationship. Questions, answers, evidence passages and original candidate records were not changed. No QA pairs were removed (300 input, 0 removed, 300 remaining).
 
-The corrections are recorded in `data/processed/qa/qa_corrections.jsonl`. Three corrected pairs were identified in the original random audit; seven were confirmed in a targeted post-audit review. The original audit remains three errors in 50 pairs (6%). Post-audit findings do not retrospectively replace the original audit decisions. The targeted review of standalone W, As and B--H entries is complete; five W entries denoting tungsten were explicitly retained. This does not constitute a full semantic review of every formula annotation. Mechanical checks of the corrected file are recorded in `data/processed/qa/qa_corrected_checks.json`.
+The corrections are recorded in `data/processed/qa/qa_corrections.jsonl`. Three corrected pairs were identified in the original random audit; seven were confirmed in a targeted post-audit review. The original audit remains three errors in 50 pairs (6%). Post-audit findings do not retrospectively replace the original audit decisions. The targeted review of standalone W, As and B--H entries is complete; five W entries denoting tungsten were explicitly retained. This does not constitute a full semantic review of every formula annotation. Mechanical checks verified unique IDs, source membership, answerability-field rules and exact supporting passages. The corrected input hash is retained in `data/evaluation/run_manifest.json`.
 
 ---
 
 ## Reproducing Random Samples
 
-`random_sample.py` uses a fixed seed of 66 and samples without replacement in input file order. It writes a JSONL sample and a `.manifest.json` containing input hashes, sample IDs and sampling settings. The following commands reproduce the historical 10-paper pilot, 30-paper jointly kept sample, and 50-pair QA audit IDs in their original selected order. Existing outputs are not overwritten.
+`scripts/random_sample.py` uses a fixed seed of 66 and samples without replacement in input file order. It writes a JSONL sample and a `.manifest.json` containing input hashes, sample IDs and sampling settings. The following commands reproduce the historical 10-paper pilot, 30-paper jointly kept sample, and 50-pair QA audit IDs in their original selected order. Existing outputs are not overwritten.
 
 ```bash
-python3 random_sample.py data/processed/arxiv_deduplicated.jsonl /tmp/pilot_10.jsonl --count 10
-python3 random_sample.py data/processed/arxiv_deduplicated.jsonl /tmp/agreed_keep_30.jsonl --count 30 --agreed-keep
-python3 random_sample.py data/processed/qa/materials_qa_all.jsonl /tmp/qa_audit_50.jsonl --count 50
+python3 scripts/random_sample.py data/processed/arxiv_deduplicated.jsonl /tmp/pilot_10.jsonl --count 10
+python3 scripts/random_sample.py data/processed/arxiv_deduplicated.jsonl /tmp/agreed_keep_30.jsonl --count 30 --agreed-keep
+python3 scripts/random_sample.py data/processed/qa/materials_qa_all.jsonl /tmp/qa_audit_50.jsonl --count 50
 ```
 
 For the agreed-keep sample, the script joins the retained Gemini and Sol classification files by arXiv ID, filters to the 1,465 joint keep records, and preserves corpus order before sampling. The source is the original 1,500-record deduplicated corpus, not the final filtered corpus. The QA audit uses the original candidate file, not the corrected copy. Reproduction was verified against all three retained sample manifests.
@@ -404,19 +404,16 @@ All 300 QA IDs are present exactly once. Reference fields and input hashes match
 
 - `data/evaluation/qwen_responses.jsonl`: the 300 model responses and reference fields.
 - `data/evaluation/run_manifest.json`: model and run provenance.
-- `data/evaluation/checkpoint_settings.json`: settings used to verify resumable inference.
-- `data/evaluation/pilot_responses.jsonl`: five execution-pilot responses, separate from the formal denominator.
-- `data/evaluation/response_checks.json`: ingestion checks and their limitations.
 
 ### AI-Judge Calibration Pilot
 
-On 6 October 2026, the user selected Codex Sol as the response judge. A separate stratified pilot sampled 20 answerable and 10 not-stated cases using sequential `random.Random(66).sample` calls in response-file order. Run `python3 prepare_judge_sample.py` to reproduce the inputs and sampling manifest. This is separate from the original 50-pair human QA audit.
+On 6 October 2026, the user selected Codex Sol as the response judge. A separate stratified pilot sampled 20 answerable and 10 not-stated cases using sequential `random.Random(66).sample` calls in response-file order. Run `python3 scripts/prepare_judge_sample.py` to reproduce the inputs and sampling manifest. This is separate from the original 50-pair human QA audit.
 
 The rubric is stored in `prompts/judge_model_responses.txt`. The initial judge rubric was drafted with AI assistance and then manually reviewed and finalized before evaluation. Judgments use the full abstract as evidence, with reference answers treated as fallible aids. Supported responses must answer the question sufficiently without unsupported substantive claims. Correct abstention is evaluated semantically; compliance with the exact output instruction `not stated` is recorded separately. The operational unsupported category includes incomplete or off-topic answers as well as fabricated claims; the reason explains each judgment.
 
 The current Codex Sol assistant provisionally classified the pilot as **19 supported, 4 unsupported and 7 correctly abstained**. The original AI labels are retained. Human review of all 30 cases was completed on 12 October 2026 and agreed with all 30 semantic classifications: **30/30 = 100% observed agreement**, with the same 19/4/7 counts. The reviewer confirmed `all_202` as unsupported under the strict completeness rule. Human records are retained separately in `data/evaluation/judge/codex_sol_human_calibration_30.csv` and `codex_sol_human_calibration_report.md`. This was a non-blinded, single-reviewer comparison, not an independent estimate of judge accuracy or proof of generalizability. The pilot overrepresents not-stated cases, so these raw counts must not be presented as performance estimates for all 300 responses.
 
-Inputs, hashes and ordered IDs are stored in `data/evaluation/judge/calibration_inputs.jsonl` and `calibration_manifest.json`; provisional judgments are in `codex_calibration_judgments.jsonl`, with a readable review in `calibration_review.md`. The human reviewer separately flagged explanatory abstentions `all_264` and `all_251` for output-format deviations and accepted capitalization-only variation for `all_287`. These format flags do not change semantic classifications; the other 27 cases have no separate format judgment recorded. This is not an exhaustive exact-string compliance audit. The original QA files, human QA audit and Qwen responses were not changed.
+Calibration hashes and ordered IDs are retained in `data/evaluation/judge/calibration_manifest.json`; judgments are in `codex_calibration_judgments.jsonl`. Run `python3 scripts/prepare_judge_sample.py` to reconstruct the calibration inputs from the retained source files. The human reviewer separately flagged explanatory abstentions `all_264` and `all_251` for output-format deviations and accepted capitalization-only variation for `all_287`. These format flags do not change semantic classifications; the other 27 cases have no separate format judgment recorded. This is not an exhaustive exact-string compliance audit. The original QA files, human QA audit and Qwen responses were not changed.
 
 Individual response judgments used no external sources. Only input sampling is reproducible exactly; repeating AI judgment may produce different labels.
 
@@ -483,12 +480,6 @@ The principal retained files are:
 - `data/processed/qa/qa_corrections.jsonl`  
   Post-audit correction records.
 
-- `data/processed/qa/qa_corrected_checks.json`  
-  Mechanical checks and hash of the corrected candidates.
-
-- `data/processed/qa/qa_ingestion_checks.json`  
-  Mechanical QA validation results and limitations.
-
 - `data/processed/qa/qa_audit_manifest.json`  
   Frozen candidate hash, sampling seed and selected IDs.
 
@@ -516,32 +507,8 @@ Third, the 30-record agreed-keep spot-check is too small to establish a precise 
 
 Fourth, mechanical QA validation verifies structure and source consistency but does not establish semantic correctness.
 
-Fifth, all audit decisions were made by a single human reviewer, with AI assistance in presenting materials. The sample-based audit may miss rare errors or errors overlooked by the reviewer.
+Fifth, all audit decisions were made by a single human reviewer who is not a domain expert in materials science and relied on translation tools to understand some scientific content. This may have affected semantic interpretation and judgment accuracy. AI assistance was also used to organize and present review materials, although final audit decisions were made by the human reviewer. The sample-based audit may miss rare errors or errors overlooked by the reviewer.
 
 Finally, the dataset is grounded in the supplied arXiv abstracts. Neither the relevance review nor the QA audit verifies the scientific truth of claims made in the original papers.
 
----
-
-## Pending Work
-
-The following stages are complete:
-
-- arXiv abstract collection;
-- deduplication;
-- abstract validation;
-- materials-relevance classification;
-- human adjudication of model disagreements;
-- human review of model-agreed exclude/review records;
-- random human spot-checking of model-agreed keep records;
-- final materials-relevance filtering;
-- generation of 300 QA candidates;
-- mechanical validation of the QA candidates;
-- the random 50-pair human QA audit;
-- targeted chemical-formula review; and
-- corrections recorded separately from the original audit.
-
-The only remaining planned stage is:
-
-### Contextual Open-Source Model Evaluation
-
-Inference, the 30-case judge calibration, full AI response classification and human adjudication of all 14 flagged cases are complete. The 30-case random human spot-check of unflagged full-run decisions is complete. Its two disagreements have been clarified and current classification records updated. Complete the final write-up with results, failure examples and limitations.
+During evaluation, the model appeared to perform particularly well on narrowly defined questions requiring a single fact or numerical value from the abstract. However, some questions requiring multiple information points received partially correct but incomplete answers. This observation has not yet been tested through a controlled comparison.
